@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrike.REST", "CounterStrike.REST\CounterStrike.REST.csproj", "{CAFE6CCF-B9F0-4FE7-8DE8-6788C985E262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrike.Infrastructure", "..\LeksG\NUPP_NET_2025_401_TH_Poterailo_Lab\CounterStrike.Infrastructure\CounterStrike.Infrastructure.csproj", "{156F072E-4411-A3B2-8312-A43E79A514E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAFE6CCF-B9F0-4FE7-8DE8-6788C985E262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFE6CCF-B9F0-4FE7-8DE8-6788C985E262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFE6CCF-B9F0-4FE7-8DE8-6788C985E262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFE6CCF-B9F0-4FE7-8DE8-6788C985E262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156F072E-4411-A3B2-8312-A43E79A514E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156F072E-4411-A3B2-8312-A43E79A514E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156F072E-4411-A3B2-8312-A43E79A514E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156F072E-4411-A3B2-8312-A43E79A514E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC433D9F-8101-48AD-A373-FAF4D568D1A3}
+	EndGlobalSection
+EndGlobal
