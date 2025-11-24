@@ -1,5 +1,6 @@
 ﻿using CounterStrike.REST.Models;
 using CounterStrike.Infrastructure.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CounterStrike.REST.Controllers
@@ -15,10 +16,13 @@ namespace CounterStrike.REST.Controllers
             _service = service;
         }
 
+        // 👁 Everyone can read players
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<PlayerModel>> GetAll() => await _service.ReadAllAsync();
 
         [HttpGet("{id:guid}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(Guid id)
         {
             var p = await _service.ReadAsync(id);
@@ -26,7 +30,9 @@ namespace CounterStrike.REST.Controllers
             return Ok(p);
         }
 
+        // ➕ Create player → Commander or Admin
         [HttpPost]
+        [Authorize(Roles = "Commander,Admin")]
         public async Task<IActionResult> Create([FromBody] PlayerDto dto)
         {
             var player = new PlayerModel
@@ -45,7 +51,9 @@ namespace CounterStrike.REST.Controllers
             return StatusCode(201);
         }
 
+        // ✏ Update player → Commander or Admin
         [HttpPut("{id:guid}")]
+        [Authorize(Roles = "Commander,Admin")]
         public async Task<IActionResult> Update(Guid id, [FromBody] PlayerDto dto)
         {
             var exist = await _service.ReadAsync(id);
@@ -63,7 +71,9 @@ namespace CounterStrike.REST.Controllers
             return Ok();
         }
 
+        // ❌ Delete player → only Admin
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var exist = await _service.ReadAsync(id);

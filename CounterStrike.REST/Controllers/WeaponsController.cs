@@ -1,5 +1,6 @@
 ﻿using CounterStrike.REST.Models;
 using CounterStrike.Infrastructure.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CounterStrike.REST.Controllers
@@ -15,10 +16,13 @@ namespace CounterStrike.REST.Controllers
             _service = service;
         }
 
+        // Anyone can view weapons
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<WeaponModel>> GetAll() => await _service.ReadAllAsync();
 
         [HttpGet("{id:guid}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(Guid id)
         {
             var w = await _service.ReadAsync(id);
@@ -26,7 +30,9 @@ namespace CounterStrike.REST.Controllers
             return Ok(w);
         }
 
+        // Only Admin can create weapons
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] WeaponDto dto)
         {
             var weapon = new WeaponModel
@@ -44,7 +50,9 @@ namespace CounterStrike.REST.Controllers
             return StatusCode(201);
         }
 
+        // Only Admin can update weapons
         [HttpPut("{id:guid}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(Guid id, [FromBody] WeaponDto dto)
         {
             var exist = await _service.ReadAsync(id);
@@ -62,7 +70,9 @@ namespace CounterStrike.REST.Controllers
             return Ok();
         }
 
+        // Only Admin deletes weapons
         [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var exist = await _service.ReadAsync(id);
@@ -75,4 +85,5 @@ namespace CounterStrike.REST.Controllers
             return Ok();
         }
     }
+
 }
